@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Extra Credit Assignment 1 - Spreadsheet</title>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        input {
+            border: none;
+            width: 80px;
+            font-size: 14px;
+            padding: 2px;
+        }
+
+        input:hover {
+            background-color: #eee;
+        }
+
+        input:focus {
+            background-color: #ccf;
+        }
+
+        input:not(:focus) {
+            text-align: right;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td {
+            border: 1px solid #999;
+            padding: 0;
+
+        }
+
+        tr,
+        td:first-child {
+            background-color: #ccc;
+            padding: 1px 3px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <table id="myTable">
+        <tr>
+            <td>@</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>
+                <input class="input" type="text">
+            </td>
+            <td>
+                <input class="input" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>
+                <input class="input" type="text">
+            </td>
+            <td>
+                <input class="input" type="text">
+            </td>
+
+        </tr>
+    </table>
+    <div>
+        <button onclick="addRow()" id="myButton"> + Add Rows </button>
+        <button onclick="addColumns()" id="myButton"> + Add Columns</button>
+        <button onclick="deleteRow()" id="myButton"> - Delete Rows</button>
+        <button onclick="deleteColumns()" id="myButton"> - Delete Columns</button>
+    </div>
+    <div>
+        <p> <br>Input first number:  Row<input id="row1" type="number">Column:<input id="column1" type="number"><br>
+            Input Second number:  Row<input id="row2" type="number"> Column:<input id="column2" type="number"><br>
+            
+        </p>
+        <p id="Answer">Answer: </p>
+        <button onclick="doSum()" id="myButton"> + </button>
+        <button onclick="doSub()" id="myButton"> - </button>
+        <button onclick="doMult()" id="myButton"> * </button>
+        <button onclick="doDiv()" id="myButton"> / </button>
+
+    </div>
+   
+    <script>
+        function addRow() {
+
+            let table = document.getElementById("myTable");
+            let row = table.insertRow();
+
+
+
+            for (var i = 0; i < table.rows[i].cells.length; i++) {
+                var index = table.rows.length;
+                if (i == 0) { // no. of this row
+                    row.insertCell(0).innerHTML = index - 1;
+                } else {
+                    createCell(row.insertCell(i), i);
+                }
+            }
+        }
+        function createCell(cell, text) {
+            var x = document.createElement("INPUT"); // create input element
+            var txt = document.createTextNode(text); // create text node
+            x.appendChild(txt);                    // append text node 
+            x.setAttribute("type", "number");        // set input attribute
+            x.setAttribute("value", " ");
+            cell.appendChild(x);
+        }
+
+        function addColumns() {
+
+            var tblHeadObj = document.getElementById("myTable");
+
+            for (var h = 0; h < tblHeadObj.rows.length; h++) {
+
+                var newTH = document.createElement('td');
+
+
+                tblHeadObj.rows[h].appendChild(newTH);
+                if (h == 0) { // no. of this row
+                    newTH.innerHTML = tblHeadObj.rows[h].cells.length - 1;
+                } else {
+                    var x = document.createElement("INPUT");
+                    x.setAttribute("type", "number");        // set input attribute
+                    x.setAttribute("value", " ");
+                    newTH.appendChild(x);
+                }
+
+            }
+
+        }
+        function deleteRow() {
+            let table = document.getElementById("myTable");
+            let lastRow = table.rows.length - 1;
+            for (let i = lastRow; i > 2; i--) {
+                table.deleteRow(i);
+            }
+
+
+        }
+        function deleteColumns() {
+            var allRows = document.getElementById("myTable").rows;
+            for (var i = 0; i < allRows.length; i++) {
+                if (allRows[i].cells.length > 1) {
+                    allRows[i].deleteCell(-1);
+                }
+            }
+
+        }
+        function doSum(){
+            var i = document.getElementById("row1").value;
+            var j = document.getElementById("column1").value;
+            var h = document.getElementById("row2").value;
+            var k = document.getElementById("column2").value;
+            
+            /*let row1 = document.querySelector('#row1');
+            var i = row1.addEventListener('input',function(){
+               i = this.value;
+            });
+
+            let column1 = document.querySelector('#column1');
+            var j = column1.addEventListener('input',function(){
+               j = this.value;
+            })
+
+            let row2 = document.querySelector('#row2');
+            var h = row2.addEventListener('input',function(){
+                 h =this.value;
+            });
+            let column2 = document.querySelector('#column2');
+            var k = column2.addEventListener('input',function(){
+                k = this.value;
+            })*/
+            let a = document.getElementById("myTable").rows[i].cells[j].children[0].value;
+            let b = document.getElementById("myTable").rows[h].cells[k].children[0].value;
+
+            //import{sum};
+            var c = parseInt(a)+parseInt(b)
+            document.getElementById("Answer").innerHTML = c;
+            
+        }
+        
+    </script>
+
+</body>
+
+</html>

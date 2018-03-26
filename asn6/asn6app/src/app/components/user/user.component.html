@@ -1,0 +1,16 @@
+<h1>Todos</h1>
+<form (submit)="onClick()" >
+    <div>
+     <input #newitem type="text" >
+     <button (click)= "onClick(newitem.value)" >Add todo item </button>
+    </div>
+<ol>
+  <li *ngFor= "let todolists of todowork">
+    {{todolists}}
+    <button (click)="deleteTodo(todolists)">x</button>
+  
+  </li>
+
+</ol>
+
+</form>

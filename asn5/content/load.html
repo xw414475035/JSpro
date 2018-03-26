@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang=''>
+<head>
+   <meta charset='utf-8'>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="../navigationbar/styles.css">
+   <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+   <script src="../navigationbar/script.js"></script>
+   <script src="todo.json"></script>
+   <script src="todo.js"></script>
+   <link rel="stylesheet" type="text/css" href="todo.css">
+   <title>CSS MenuMaker</title>
+   <script >
+    function SomeJavaScriptCode(){
+   alert("hello")
+}
+</script>
+</head>
+<body>
+
+<div id='cssmenu'>
+<ul>
+   <li class='active'  ><a onclick="jumpCreate()">Create a New to-do list</a></li>
+   <li><a href='#'>Load from json</a></li>
+   <li ><a href='#' id="Usernow">Current User:</a></li>
+  
+</ul>
+</div>
+
+<button class="button blue bigrounded" style=" margin-top: 5%;"  onclick="readjson()"> Load exist todo list</button>
+<ul id="myUL">
+        
+ </ul>
+<ul id="jsonlist"> 
+    
+</ul>
+</body>
+
+<html>
+        <script>
+                var user = document.getElementById("Usernow"); 
+           
+                user.innerHTML=window.location.href.split('=')[1];
+                  // alert(window.location.href.split('=')[1]);
+
+              
+        function jumpCreate() 
+    　　{ 
+    
+    　　var input1 = document.getElementById("Usernow").innerHTML; 
+    //    window.location.href="Create.html?inputStr=" + input1.value;
+    window.location.href="Create.html?inputStr=" + input1;
+    // 　　window.location.href='../content/index.html?inputStr=' + input1.value
+    　　} 
+
+        </script>
